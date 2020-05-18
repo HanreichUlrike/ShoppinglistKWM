@@ -1,0 +1,40 @@
+<div class="ui grid segment" *ngIf="shoppinglist && user">
+
+
+    <div class="twelve wide column">
+        <h1 class="ui header">Einkaufsliste {{ shoppinglist?.id }}</h1>
+        <h2 class="ui header ">erstellt von: {{user.firstname}} {{user.lastname}}</h2>
+        <h3 class="ui header">zu besorgen bis: {{ shoppinglist?.until | date: 'dd.MM.yyyy' }}</h3>
+        <div class="ui divider"></div>
+        <div class="ui grid">
+            <div class="four wide column">
+                <h3 class="ui header">Listenartikel:</h3>
+                <span *ngFor="let article of shoppinglist?.articles; last as l">
+             {{article.pivot.unit}} / {{article.term}} / {{article.pivot.max_price}} € <span *ngIf="!l"><br/> </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="sixteen wide column">
+        <h3 class="ui header">Kommentare:</h3>
+       <p>{{ shoppinglist?.comments }}</p>
+    </div>
+</div>
+
+<button [routerLink]= "'/shoppinglists'" class="ui tiny blue basic button" >
+    <i class="arrow left icon"></i >Zurück zur Übersicht</button>
+
+<button *ngIf= "role" class= "ui tiny red labeled icon basic button"
+        (click)= "removeShoppinglist()">
+     <i class= "remove icon"></i >Einkaufsliste löschen
+</button>
+
+<a *ngIf= "role" class= "ui tiny yellow labeled icon basic button"
+   [routerLink]= "['../../admin', shoppinglist?.id]">
+    <i class= "write icon"></i> Einkaufsliste bearbeiten
+</a>
+
+<a *ngIf= "role == false" class= "ui tiny green labeled icon basic button"
+   [routerLink]= "['../../shoppinglists']">
+    <i class= "write icon"></i> Einkaufsliste übernehmen
+</a>

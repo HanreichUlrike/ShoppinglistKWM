@@ -1,0 +1,62 @@
+
+<div class="ui segment">
+<h1>Neue Einkaufsliste:</h1>
+<form  class="ui large form" [formGroup]="shoppinglistForm" (ngSubmit)="submitForm()">
+
+    <div class="field three wide column" [class.disabled]="isUpdatingShoppinglist">
+        <input type="hidden" formControlName="id" readonly>
+        <div *ngIf="errors.id" class="ui negative message">{{errors.id}} </div>
+    </div>
+    <div class="field">
+        <input type="hidden" formControlName="user_id">
+        <div *ngIf="errors.user_id" class="ui negative message">{{errors.user_id}} </div>
+    </div>
+
+    <div class="field">
+        <label>Bitte besorgen bis: </label><br/>
+        <div class="ui input left icon three wide field">
+            <i class="calendar icon"></i>
+            <input type="date" formControlName="until">
+            <div *ngIf="errors.until" class="ui negative message">{{errors.until}} </div>
+        </div>
+    </div>
+    <br/>
+
+    <div class="field">
+        <label>Artikel: </label><br/>
+        <div formArrayName="articles">
+            <div class="fields" *ngFor="let control of articles?.controls; index as i; last as l" [formGroupName]="i">
+                <input type="hidden" name="article_id">
+                <div class="three wide field">
+                    <label>Bezeichnung: </label>
+                    <input formControlName="term">
+                </div>
+                <div class="three wide field">
+                    <label>Menge: </label>
+                    <input formControlName="unit">
+                </div>
+                <div class="three wide field">
+                    <label>Maximalpreis: </label>
+                    <input formControlName="max_price">
+                </div>
+                <div class="three wide field" *ngIf="l">
+                    <label>+ </label>
+                    <button (click)= "addArticleControl()" class="ui large button" type="button">Hinzufügen</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="five wide field">
+        <label>Kommentare: </label>
+        <textarea formControlName="comments" rows="3"></textarea>
+    </div>
+    <div class="three wide field">
+        <label>Preis: </label>
+        <textarea formControlName="price" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="ui button" [disabled]="shoppinglistForm.invalid">Speichern</button>
+</form>
+</div>

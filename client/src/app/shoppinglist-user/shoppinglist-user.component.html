@@ -1,0 +1,11 @@
+
+<div class="ui grid segment" *ngIf="user">
+<div class= "ui">
+    <div class= "header" >Meine Daten:</div><br/>
+    <div class= "description" >Vorname: {{ user?.firstname }}</div>
+    <div class= "description" >Nachname: {{ user?.lastname }} </div>
+    <div class= "description" >E-Mail: {{ user?.email}} </div>
+    <div class= "description" >Freiwilliger: {{ isHelper()}} </div>
+    <div class= "description" >Hilfesuchender: {{ isSeeker() }} </div>
+</div>
+</div>

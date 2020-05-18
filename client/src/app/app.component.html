@@ -1,0 +1,14 @@
+
+
+    <div class = "ui {{isLoggedIn()? 'four':'three'}} fluid tabular menu blue">
+        <a routerLink = "home" routerLinkActive= "active" class= "item" >Home</a>
+        <a routerLink = "shoppinglists" routerLinkActive= "active" class= "item">Einkaufslisten</a>
+        <a *ngIf= "role" routerLink= "admin" routerLinkActive= "active" class= "item">Neue Einkaufsliste</a>
+        <a *ngIf= "isLoggedIn()" routerLink= "user" routerLinkActive= "active" class= "item">Mein Profil</a>
+        <a routerLink = "login" routerLinkActive= "active"
+           class= "item">{{getLoginLabel()}}</a>
+
+    </div>
+
+
+<router-outlet></router-outlet>

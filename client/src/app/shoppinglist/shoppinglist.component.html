@@ -1,0 +1,9 @@
+
+
+<div class= "ui segment">
+        <div class= "header" >Einkaufsliste NR. {{ shoppinglist.id }}</div>
+        <div class= "description" >erstellt von: {{ user.firstname }} {{ user.lastname }} </div>
+        <div class= "description" >fällig am: {{ shoppinglist.until | date: 'dd.MM.yyyy' }} </div>
+        <hr/>
+</div>
+

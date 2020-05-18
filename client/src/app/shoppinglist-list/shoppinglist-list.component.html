@@ -1,0 +1,13 @@
+
+    <div class= "ui middle aligned selection divided list">
+        <a *ngFor= "let shoppinglist of shoppinglists " class= "sl-shoppinglist"
+        [shoppinglist]= "shoppinglist"
+         [routerLink]= "shoppinglist.id">
+        </a>
+        <div *ngIf= "! shoppinglists " class= "ui active dimmer" >
+            <div class= "ui large text loader" >Daten werden geladen...</div>
+        </div>
+        <p *ngIf= " shoppinglists && ! shoppinglists.length" >Es wurden noch keine Listen angelegt.</p>
+    </div>
+
+
